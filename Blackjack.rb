@@ -1,11 +1,19 @@
-
+RED = "\e[31m"
+GREEN = "\e[32m"
+YELLOW = "\e[33m"
+BLUE = "\e[34m"
+Purple = "\e[35m"
+T = "\e[36m"
+O = "\e[37m"
+C = "\e[38m"
+STOP_COLOR = "\e[0m"
 
 def play_blackjack
-  puts "Welcome to Ruby Blackjack!"
+  puts "#{RED}Welcome to Ruby Blackjack!#{STOP_COLOR}"
   chips = 500
 
   while chips > 0
-    puts "You have #{chips} chips."
+    puts "You have #{GREEN}#{chips}#{STOP_COLOR} chips."
     print "How much would you like to bet? "
     bet = gets.chomp.to_i
     if bet <= 0 || bet > chips
@@ -36,11 +44,11 @@ def play_blackjack
     player_total = calculate_total(player_hand)
     dealer_total = calculate_total(dealer_hand)
 
-    puts "Dealer has: #{dealer_hand[0]} and one face-down card"
-    puts "You have: #{player_hand[0]} and #{player_hand[1]} (total: #{player_total})"
+    puts "Dealer has: #{YELLOW}#{dealer_hand[0]}#{STOP_COLOR} and one face-down card"
+    puts "You have: #{BLUE}#{player_hand[0]}#{STOP_COLOR} and#{Purple} #{player_hand[1]}#{STOP_COLOR} (total:#{T} #{player_total})#{STOP_COLOR}"
 
     while player_total < 21
-      print "Would you like to hit or stand? "
+      print "Would you like to #{RED}hit#{STOP_COLOR} or#{Purple} stand? #{STOP_COLOR}"
       action = gets.chomp.downcase
 
       if action == "hit"
@@ -55,7 +63,7 @@ def play_blackjack
     end
 
     if player_total > 21
-      puts "You busted! Dealer wins."
+      puts "#{RED}You busted!#{STOP_COLOR} #{O}Dealer wins.#{STOP_COLOR}"
       chips -= bet
       next
     end
@@ -70,7 +78,7 @@ def play_blackjack
     end
 
     if dealer_total > 21
-      puts "Dealer busted! You win."
+      puts "#{RED}Dealer busted!#{BLUE} You win."
       chips += bet
       next
     end
@@ -82,11 +90,11 @@ def play_blackjack
       puts "You win with a total of #{player_total}!"
       chips += bet
     else
-      puts "It's a tie!"
+      puts "#{GREEN}It's a tie!#{STOP_COLOR}"
     end
   end
 
-  puts "You have no more chips. Game over!"
+  puts "#{RED}You have no more chips. Game over!#{STOP_COLOR}"
 end
 
 def calculate_total(hand)
